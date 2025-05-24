@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Конфигурационные константы
-COLLECTION_NAME = "xsud-code"
+COLLECTION_NAME = "project-code"
 EMBEDDER_MODEL = "intfloat/multilingual-e5-base"
 INPUT_FILE = "data/repomix-output.txt"
 CHUNK_SEPARATOR = "⋮----"

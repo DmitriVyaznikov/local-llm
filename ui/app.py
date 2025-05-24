@@ -17,10 +17,10 @@ def run_agents(code, mode):
     yield f"⏱️ Время ответа: {duration}\n---\n{response.get('output', '[Нет ответа]')}"
 
 with gr.Blocks() as demo:
-    gr.Markdown(f"# ⚙️ {MODEL.upper()} — LLM для проекта XSUD")
+    gr.Markdown(f"# ⚙️ {MODEL.upper()} — LLM для индивидуального проекта")
     # gr.Markdown("Вставь запрос — LLM выдаст ответ, используя документ `repomix-output.txt`")
 
-    code_input = gr.Textbox(label="Запрос или код", lines=12, placeholder="Что делает компонент XsudInput.vue?")
+    code_input = gr.Textbox(label="Запрос или код", lines=12, placeholder="Что делает компонент Input?")
     # mode_input = gr.Radio(["all"], label="Тип агента", value="all", visible=False)
     run_btn = gr.Button("🚀 Запустить")
     output_md = gr.Markdown()

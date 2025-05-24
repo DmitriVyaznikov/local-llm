@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 # Конфигурационные константы
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
 MODEL = os.getenv("OLLAMA_MODEL", "qwen3:8b")
-COLLECTION_NAME = "xsud-code"
+COLLECTION_NAME = "project-code"
 EMBEDDER_MODEL = "intfloat/multilingual-e5-base"
 DEFAULT_N_RESULTS = 5
 ERROR_MESSAGE = "Недостаточно информации в кодовой базе. Пожалуйста, уточни вопрос."
@@ -83,7 +83,7 @@ def format_context(
             f"Файл {meta.get('source', 'unknown')}:\n{doc}"
             for doc, meta in zip(docs, metas)
         ])
-        system = "Ты эксперт по проекту XSUD. Ответь на вопрос, используя знания из найденных фрагментов."
+        system = "Ты эксперт по проекту из кодовой базы. Ответь на вопрос, используя знания из найденных фрагментов."
     else:
         context = "\n\n".join(docs)
         system = "Ответь на вопрос на основе найденного кода."
