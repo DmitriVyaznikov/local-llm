@@ -70,7 +70,7 @@ pip install -r requirements.txt
 ### 2. Индексация векторной базы кода
 
 ```bash
-python agents/index_builder.py
+python db_compiler/index_builder.py
 ```
 
 ### 3. временно не работает  ------------- Запуск MCP (один раз, в фоне)
@@ -127,8 +127,8 @@ python ui/app.py
 ```
 ├── main.py               # API + Query engine
 ├── ui/app.py            # Gradio UI
-├── agents/index_builder.py
-├── agents/text_loader.py
+├── db_compiler/index_builder.py
+├── db_compiler/text_loader.py
 ├── data/repomix-output.txt  # Исходная база кода
 └── storage/             # Индекс базы знаний
 ```

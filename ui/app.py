@@ -12,7 +12,7 @@ MODEL = os.getenv('MODEL_NAME', 'LLM')
 PROJECT_NAME = os.getenv('PROJECT_NAME', 'Local LLM')
 first_run = True
 
-def run_agents(code, mode):
+def run_analysis(code, mode):
     global first_run
     start = time.time()
     response_data = None
@@ -59,7 +59,7 @@ with gr.Blocks() as demo:
     run_btn = gr.Button("🚀 Запустить")
     output_md = gr.Markdown()
 
-    run_btn.click(fn=run_agents, inputs=[code_input], outputs=output_md)
+    run_btn.click(fn=run_analysis, inputs=[code_input], outputs=output_md)
 
 demo.launch()
 
