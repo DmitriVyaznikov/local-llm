@@ -28,8 +28,8 @@ indexing.log
 # Virtual Environment
 .venv
 venv/
-env/
-ENV/
+env_example/
+env_example/
 .env
 
 # IDE specific files

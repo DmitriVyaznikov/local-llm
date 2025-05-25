@@ -3,14 +3,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from llama_index.core import Settings, VectorStoreIndex, StorageContext, load_index_from_storage
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.ollama import Ollama
-import requests
+import os
 import logging
+from dotenv import load_dotenv
 import time
 import subprocess
 import threading
-logging.basicConfig(level=logging.INFO)
 
-Settings.llm = Ollama(model="qwen3:8b", temperature=0.1,request_timeout=120)
+load_dotenv()
+
+logging.basicConfig(level=logging.INFO)
+MODEL = os.getenv('MODEL_NAME', 'LLM')
+PORT = int(os.getenv('PORT', 8000))
+Settings.llm = Ollama(model=MODEL, temperature=0.1,request_timeout=120)
 Settings.embed_model = HuggingFaceEmbedding(model_name="intfloat/multilingual-e5-base")
 
 app = FastAPI()
@@ -37,15 +42,14 @@ def query_context7(prompt: str) -> str:
         mcp_proc.stdin.flush()
         return mcp_proc.stdout.readline().decode("utf-8").strip()
 
-@app.get("/model")
-def get_model():
-    return {"model": Settings.llm.model}
+
 
 @app.post("/run")
 async def run_pipeline(request: Request):
+    default_prompt="Ты должен отвечать строго на русском языке, если далее не будет заявлено иного."
     data = await request.json()
     query = data.get("code", "")
-    query = f"Ты должен отвечать строго на русском языке, если далее не будет заявлено иного. {query}"
+    query = f"{default_prompt} {query}"
     # if "use context7" in query.lower():
     #     logging.info("📡 Обогащение через context7 MCP...")
     #     context_info = query_context7(query)
@@ -67,7 +71,7 @@ async def run_pipeline(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=PORT, reload=True)
 
 
 

@@ -1,0 +1,4 @@
+MODEL_NAME=
+PROJECT_NAME=
+PORT=8005
+API_URL="http://localhost:${PORT}/run"
