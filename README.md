@@ -42,7 +42,6 @@ ollama run qwen3:8b
 | CodeLlama 13B  | 32+ GB    | 16+ GB     | \~21 GB   | Только GPU                       |
 | Deepseek Coder | 16+ GB    | 12+ GB     | \~7 GB    | GPU предпочтительно              |
 
-### если другая llm, то необходимо сменить нейминг в main.py и index_builder.py
 
 ### предварительно компилируем свой проект в repomix https://github.com/yamadashy/repomix
 
